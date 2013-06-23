@@ -168,10 +168,7 @@
 			for (var index = 0, temp; temp = self.items.getByIndex(index++);(function(di){
 				var newY =  di.q * self.offset;
 				
-				di.image.css({
-					top : newY
-				});
-				
+				di.image.css('top',newY);
 				di.y = newY;
 				self.items.setReferenceByIndex(di.q,newY);
 			})(temp));
@@ -180,10 +177,7 @@
 			var self = this;
 		
 			for (var index = 0, temp; temp = self.items.getByIndex(index++);(function(di){
-				di.image.css({
-					'z-index' : di.z
-				});
-				
+				di.image.css('z-index',di.z);
 				di.wrapper.attr('class','index'+di.z+(di.z == 0 ? ' last' : '')+(di.q == 0 ? ' first' : ''));
 				di.image.data('vDemo-image',di);
 			})(temp));
@@ -205,10 +199,10 @@
 				dataname = 'vDemo-animateto('+direction+')';
 				
 			if (!!next && y != a.y){
-				var ny = parseInt(next.image.css('top')),
-					cy = parseInt(a.image.css('top')),
+				var ny = next.image[0].offsetTop,
+					cy = a.image[0].offsetTop,
 					moveDown = direction > 0,
-					rawNext = next.image.get(0);
+					rawNext = next.image[0];
 					
 				if ((moveDown && ny < cy) || (!moveDown && ny > cy))
 				{
